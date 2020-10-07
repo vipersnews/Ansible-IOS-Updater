@@ -19,8 +19,8 @@
     - name: IOS CHECKING
       block:
 
-#      - name: GATHER ROUTER FACTS
-#        ios_facts:
+      - name: GATHER ROUTER FACTS
+        ios_facts:
 
       - name: CHECK IF {{ IOS }} ALREADY INSTALLED
         cisco.ios.ios_command:
