@@ -1,0 +1,48 @@
+---
+- hosts: router_a
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: IOS CHECKING
+      block:
+
+#      - name: GATHER ROUTER FACTS
+#        ios_facts:
+
+      - name: CHECK IF {{ IOS }} ALREADY INSTALLED
+        cisco.ios.ios_command:
+          commands: "show flash: | inc bin"
+        register: showflash
+
+      - name: Print if ios found
+        when: "showflash is search(IOS)"
+        meta: end_play
+
+      - name: UPGRADE IOS IMAGE IF NOT COMPLIANT
+        cisco.ios.ios_command:
+          commands:
+          - command: "copy {{ FTP }} flash:"
+            prompt: '[confirm]'
+            answer: ''
+        register: ftp
+
+- hosts: router_a
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: VERIFY MD5
+      cisco.ios.ios_command:
+        commands: "verify /md5 {{ IOS }}"
+      register: md5
+
+    - name: SET BOOTVAR WHEN MD5 PASSES
+      cisco.ios.ios_command:
+        commands:
+        - command: "conf t"
+        - command: "{{ BOOT_FLASH }}"
+        - command: "ex"
+        - command: "wr"
+    - debug: msg="Ready for reload"
+      when: "md5 is search(MD5)"
