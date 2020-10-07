@@ -1,2 +1,2 @@
 [SWITCHES]
-router_a ansible_host=192.168.1.3 ansible_network_os=ios ansible_ssh_pass=doz ansible_ssh_user=doz
+router_a ansible_host=192.168.1.3 ansible_network_os=ios 
