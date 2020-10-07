@@ -2,6 +2,18 @@
 - hosts: router_a
   gather_facts: no
   connection: network_cli
+  vars_prompt:
+
+    - name: ansible_ssh_pass
+      prompt: "What is your username?"
+      private: no
+
+    - name: ansible_ssh_user
+      prompt: "What is your password?"
+      private: yes
+      encrypt: "sha512_crypt"
+      confirm: yes
+      salt_size: 7
 
   tasks:
     - name: IOS CHECKING
