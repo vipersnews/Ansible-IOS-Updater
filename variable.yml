@@ -1,5 +1,5 @@
 ---
-- hosts: router_a
+- hosts: SWITCHES
   gather_facts: no
   connection: network_cli
 
@@ -9,8 +9,8 @@
 
 
 
-#      - name: GATHER ROUTER FACTS
-#        ios_facts:
+      - name: GATHER ROUTER FACTS
+        ios_facts:
 
       - name: CHECK IF {{ IOS }} ALREADY INSTALLED
         cisco.ios.ios_command:
