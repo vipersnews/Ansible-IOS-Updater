@@ -1,6 +1,11 @@
+#IOS FileName
 IOS: c2960c405-universalk9-mz.152-7.E2.bin
-FTP: ftp://doz:doz@192.168.1.69/c2960c405-universalk9-mz.152-7.E2.bin
+#FTP Details
+FTP: ftp://USER:PASS@192.168.1.69/c2960c405-universalk9-mz.152-7.E2.bin
+#MD5 Value
 MD5: ac54677d3afc5b165d8b7a6713fbd36f
+#boot location
 BOOT_FLASH: boot system flash:c2960c405-universalk9-mz.152-7.E2.bin
+#Login Details
 ansible_ssh_pass: SETPASS
 ansible_ssh_user: SETUSER
